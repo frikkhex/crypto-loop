@@ -1,3 +1,3 @@
-function newUrl(detailedCurrency = "?=") {
-	return detailedCurrency;
-}
+const newUrl = (detailedCurrency = "?=") => {
+  return detailedCurrency;
+};

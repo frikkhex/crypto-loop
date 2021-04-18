@@ -9,50 +9,49 @@ console.log(cryptoUrl);
 
 let html = "";
 
-async function currencyInfo() {
-	try {
-		const response = await fetch(cryptoUrl);
-		const details = await response.json();
-		console.log(details[0]);
+const currencyInfo = async () => {
+  try {
+    const response = await fetch(cryptoUrl);
+    const details = await response.json();
 
-		const name = `${details[0].name}`;
-		const shortName = `${details[0].symbol}`;
-		const rank = `${details[0].rank}`;
-		const price = `${details[0].price_usd}`;
-		const change24h = `${details[0].percent_change_24h}`;
-		const change1h = `${details[0].percent_change_1h}`;
-		const change7d = `${details[0].percent_change_7d}`;
-		document.title = `${name} is the #${rank} most traded currency out there. Start trading!`;
+    const name = `${details[0].name}`;
+    const shortName = `${details[0].symbol}`;
+    const rank = `${details[0].rank}`;
+    const price = `${details[0].price_usd}`;
+    const change24h = `${details[0].percent_change_24h}`;
+    const change1h = `${details[0].percent_change_1h}`;
+    const change7d = `${details[0].percent_change_7d}`;
+    document.title = `${name} is the #${rank} most traded currency out there. Start trading!`;
 
-		// Sets background-color based on trend
-		let trend24 = "";
-		if (details[0].percent_change_24h < 0) {
-			console.log("true");
-			trend24 = "img-down24";
-		} else {
-			console.log("nope");
-			trend24 = "img-up24";
-		}
+    // Sets background-color based on trend
+    let trend24 = "";
+    if (details[0].percent_change_24h < 0) {
+      console.log("true");
+      trend24 = "img-down24";
+    } else {
+      console.log("nope");
+      trend24 = "img-up24";
+    }
 
-		let trend1 = "";
-		if (details[0].percent_change_1h < 0) {
-			console.log("true");
-			trend1 = "img-down1";
-		} else {
-			console.log("nope");
-			trend1 = "img-up1";
-		}
+    let trend1 = "";
+    if (details[0].percent_change_1h < 0) {
+      console.log("true");
+      trend1 = "img-down1";
+    } else {
+      console.log("nope");
+      trend1 = "img-up1";
+    }
 
-		let trend7 = "";
-		if (details[0].percent_change_7d < 0) {
-			console.log("true");
-			trend7 = "img-down7";
-		} else {
-			console.log("nope");
-			trend7 = "img-up7";
-		}
+    let trend7 = "";
+    if (details[0].percent_change_7d < 0) {
+      console.log("true");
+      trend7 = "img-down7";
+    } else {
+      console.log("nope");
+      trend7 = "img-up7";
+    }
 
-		html += `
+    html += `
         <div class="crypto-info">
             <p class="currency newName">${name}</p>
             <p class="currency shortName">${shortName}</p>
@@ -66,11 +65,11 @@ async function currencyInfo() {
         </div>
         `;
 
-		container.innerHTML = html;
-	} catch (err) {
-		console.log(err);
-		container.innerHTML = displayError();
-	}
-}
+    container.innerHTML = html;
+  } catch (err) {
+    console.log(err);
+    container.innerHTML = displayError();
+  }
+};
 
 currencyInfo();
